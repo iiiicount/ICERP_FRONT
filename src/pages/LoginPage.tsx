@@ -1,4 +1,4 @@
-import "../assets/scss/login.scss";
+import "../assets/scss/Login.scss";
 import logo from "../assets/images/icount_logo_color.png";
 
 const LoginPage = () => {
