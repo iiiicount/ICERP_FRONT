@@ -1,0 +1,60 @@
+.snb {
+    position: absolute;
+    top: 16px;
+    left: initial;
+    right: 24px;
+    bottom: initial;
+    z-index: 10;
+}
+
+.my_info {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    max-width: 350px;
+    height: 44px;
+
+    .profile {
+        margin: 4px 0 0 0;
+        float: right;
+        height: 33px;
+
+        .photo {
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 32px;
+            }
+        }
+
+        .notification {
+            float: right;
+            margin-right: 8px;
+            float: left;
+            width: 40px;
+            height: 43px;
+            text-align: left;
+            border-radius: 4px;
+
+            .wrap_notification {
+                float: left;
+                width: 40px;
+                height: 43px;
+                text-align: left;
+                border-radius: 4px;
+
+                a {
+                    display: inline-block;
+                    background: url(../images/ic_snb.png) no-repeat;
+                    width: 26px;
+                    height: 26px;
+                    margin: 4px 0 0 8px;
+                }
+
+                .btn_noti {
+                    background-position: -50px -50px;
+                }
+            }
+        }
+    }
+}
