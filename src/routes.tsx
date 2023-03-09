@@ -4,6 +4,8 @@ import NoticePage from "./pages/NoticePage";
 import SalePage from "./pages/SalePage";
 import PurchasePage from "./pages/PurchasePage";
 import FreeBoardPage from "./pages/FreeBoardPage";
+import EditFreeBoardPage from "./pages/EditFreeBoardPage";
+import DetailFreeBoardPage from "./pages/DetailFreeBoardPage";
 
 const routes = [
   {
@@ -29,6 +31,14 @@ const routes = [
   {
     path: "/freeboard",
     element: <FreeBoardPage />,
+  },
+  {
+    path: "/freeboard/editfreeboard",
+    element: <EditFreeBoardPage />,
+  },
+  {
+    path: "/detailfreeboardpage/:freeboardpageid",
+    element: <DetailFreeBoardPage />,
   },
 ];
 

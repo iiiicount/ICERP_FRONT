@@ -31,7 +31,7 @@ const navLists = [
   {
     path: "/freeboard",
     name: "freeboard",
-    kr_name: "자유게시판",
+    kr_name: "커뮤니티",
   },
 ];
 
