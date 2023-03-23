@@ -1,0 +1,14 @@
+.button_container {
+  padding: 10px;
+  background-color: none;
+
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: fit-content;
+  color: black;
+  margin: 5px;
+  &:hover {
+    background-color: #dddddd;
+  }
+}

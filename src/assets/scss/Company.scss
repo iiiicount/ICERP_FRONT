@@ -1,0 +1,24 @@
+.contents {
+    width: 100%;
+    padding: 20px;
+    .content_box {
+        width: 100%;
+        margin-top: 20px;
+        border-top: solid 1px #d9d9d9;
+        border-bottom: solid 1px #d9d9d9;
+    }
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    .title {
+        background-color: #d9d9d9;
+        width: 150px;
+        padding: 10px 20px;
+    }
+    .content {
+        width: 600px;
+        padding: 10px 20px;
+    }
+}
