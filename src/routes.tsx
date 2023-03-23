@@ -30,18 +30,6 @@ const routes = [
         path: "/purchase",
         element: <PurchasePage />,
     },
-    {
-        path: "/freeboard",
-        element: <FreeBoardPage />,
-    },
-    {
-        path: "/freeboard/editfreeboard",
-        element: <EditFreeBoardPage />,
-    },
-    {
-        path: "/detailfreeboardpage/:freeboardpageid",
-        element: <DetailFreeBoardPage />,
-    },
 ];
 
 export default routes;
