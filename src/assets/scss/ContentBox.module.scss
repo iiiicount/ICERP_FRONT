@@ -1,0 +1,56 @@
+.contentbox_container {
+  border: 0.5px solid #dddddd;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  .title_box {
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: fit-content;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    span {
+      cursor: pointer;
+
+      margin-right: 10px;
+      .HiOutlineChatBubbleOvalLeftEllipsis {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .comment_cnt {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .contents_box {
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .writer_box {
+    width: fit-content;
+
+    margin-bottom: 10px;
+    color: #777777;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+      margin-right: 10px;
+      .CgProfile {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
