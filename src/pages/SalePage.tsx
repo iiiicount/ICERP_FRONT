@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ContentTop from "../components/ContentTop";
 import EditModal from "../components/Modal/EditModal";
+import Pagenation from "../components/Pagenation/Pagenation";
 import Table from "../components/Table/Table";
 
 const columnName = {
@@ -57,6 +58,12 @@ const tableDataList = [
 
 const SalePage = () => {
     const [popUp, setPopUp] = useState<typeof columnName | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+
+    const onClickPageButton = () => {
+        setCurrentPage(1);
+    };
 
     return (
         <div className="go_content">
@@ -76,6 +83,11 @@ const SalePage = () => {
                     />
                 )}
             </div>
+            <Pagenation
+                currentPage={currentPage}
+                numberOfPages={numberOfPages}
+                onClick={onClickPageButton}
+            />
         </div>
     );
 };
