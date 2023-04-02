@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import ContentTop from "../components/ContentTop";
-import Table from "../components/Grid/Table";
+import EditModal from "../components/Modal/EditModal";
+import Table from "../components/Table/Table";
 
 const columnName = {
     order: "순서",
@@ -10,7 +12,7 @@ const columnName = {
     unitCost: "단가",
 };
 
-const gridTestDataList = [
+const tableDataList = [
     {
         order: "01",
         code: "A0001",
@@ -54,14 +56,20 @@ const gridTestDataList = [
 ];
 
 const SalePage = () => {
+    const [popUp, setPopUp] = useState<typeof columnName | null>(null);
+
     return (
         <div className="go_content">
             <ContentTop titleName={"판매"} path={"/sale"} />
             <div className="content_page">
                 <Table
                     columnName={columnName}
-                    gridTestDataList={gridTestDataList}
+                    tableDataList={tableDataList}
+                    onClick={setPopUp}
                 />
+                {popUp !== null && (
+                    <EditModal item={popUp} onClose={() => setPopUp(null)} />
+                )}
             </div>
         </div>
     );
