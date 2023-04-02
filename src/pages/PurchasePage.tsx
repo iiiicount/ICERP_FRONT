@@ -1,5 +1,5 @@
 import ContentTop from "../components/ContentTop";
-import Table from "../components/Grid/Table";
+import Table from "../components/Table/Table";
 
 const columnName = {
     order: "순서",
@@ -10,7 +10,7 @@ const columnName = {
     unitCost: "단가",
 };
 
-const gridTestDataList = [
+const tableDataList = [
     {
         order: "01",
         code: "A0001",
@@ -60,8 +60,9 @@ const PurchasePage = () => {
             <div className="content_page">
                 <Table
                     columnName={columnName}
-                    gridTestDataList={gridTestDataList}
+                    tableDataList={tableDataList}
                     useOption="input"
+                    onClick={() => {}}
                 />
             </div>
         </div>
