@@ -33,7 +33,7 @@ const Table = ({
                             <tr
                                 className={styles.grid_tr_row}
                                 key={data.order}
-                                onClick={() => onClick(data)}
+                                onClick={(prev) => onClick(data)}
                             >
                                 {keys.map((key) => (
                                     <th key={key}>

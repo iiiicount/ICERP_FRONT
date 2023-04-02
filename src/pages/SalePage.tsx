@@ -68,7 +68,12 @@ const SalePage = () => {
                     onClick={setPopUp}
                 />
                 {popUp !== null && (
-                    <EditModal item={popUp} onClose={() => setPopUp(null)} />
+                    <EditModal
+                        title={"판매수정"}
+                        columnName={columnName}
+                        item={popUp}
+                        onClose={() => setPopUp(null)}
+                    />
                 )}
             </div>
         </div>
