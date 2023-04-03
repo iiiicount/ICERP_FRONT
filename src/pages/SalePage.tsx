@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ContentTop from "../components/ContentTop";
 import EditModal from "../components/Modal/EditModal";
 import Pagenation from "../components/Pagenation/Pagenation";
@@ -58,11 +58,13 @@ const tableDataList = [
 
 const SalePage = () => {
     const [popUp, setPopUp] = useState<typeof columnName | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [numberOfPages, setNumberOfPages] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1); //현재 페이지
+    const [numberOfPosts, setNumberOfPosts] = useState(10); //게시글 개수
+    const [numberOfPages, setNumberOfPages] = useState(10); //페이지 개수
 
-    const onClickPageButton = () => {
-        setCurrentPage(1);
+    const onClickPageButton = (page: number) => {
+        console.log("페이지네이션 클릭", page);
+        setCurrentPage(page);
     };
 
     return (

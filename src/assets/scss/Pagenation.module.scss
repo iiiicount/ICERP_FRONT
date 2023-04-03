@@ -1,0 +1,31 @@
+.pagenation {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .pagenation_wrapper {
+        display: flex;
+        flex-direction: row;
+
+        li {
+            display: inline-block;
+            padding: 0;
+            height: 24px;
+            min-width: 24px;
+            font-size: 13px;
+            line-height: 25px;
+            vertical-align: top;
+            border: 1px solid #fff;
+            cursor: pointer;
+
+            div {
+                text-align: center;
+            }
+        }
+
+        .paginate_active {
+            color: #333;
+            border-color: #333;
+        }
+    }
+}
