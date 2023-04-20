@@ -1,57 +1,69 @@
 import "../assets/scss/Company.scss";
 import ContentTop from "../components/ContentTop";
+import { companyInfoData } from "../assets/data/MockDatas";
+import { useState } from "react";
 
 const companyInfo = [
-    { display_name: "사업자번호", data: "0000000000001" },
-    { display_name: "회사/상호", data: "ICount" },
-    { display_name: "대표자", data: "하연이" },
-    { display_name: "업태", data: "서비스" },
-    { display_name: "종목", data: "소프트웨어개발공급" },
-    { display_name: "전화번호", data: "02-1111-2222" },
-    { display_name: "FAX번호", data: "02-1111-2222" },
-    { display_name: "이메일", data: "ictount@icounterp.co.kr" },
-    { display_name: "법인번호", data: "000011112222" },
-    { display_name: "종사업자번호", data: "000011112222" },
-    { display_name: "주소", data: "구로 에이스하이엔드타워 2차 804호 회의실" },
-    {
-        display_name: "소개",
-        data: "이카운트 최대 라이벌 월 39000원 아이카운트",
-    },
+  { display_name: "사업자번호", data: companyInfoData.business_number, editable: false },
+  { display_name: "회사/상호", data: companyInfoData.company_name, editable: false },
+  { display_name: "대표자", data: companyInfoData.ceo_name, editable: false },
+  { display_name: "업태", data: companyInfoData.business_type, editable: true },
+  { display_name: "종목", data: companyInfoData.business_item, editable: true },
+  { display_name: "전화번호", data: companyInfoData.number, editable: true },
+  { display_name: "FAX번호", data: companyInfoData.fax_number, editable: true },
+  { display_name: "이메일", data: companyInfoData.email, editable: true },
+  { display_name: "주소", data: companyInfoData.address, editable: true },
+  { display_name: "소개", data: companyInfoData.introduction, editable: true },
 ];
 
 const CompanyPage = () => {
-    return (
-        <>
-            <div className="go_content">
-                <ContentTop titleName={"회사 관리"} path={"/"} />
-            </div>
-            <div className="contents">
-                <span>ICount 기본 정보</span>
-                <div className="content_box">
-                    {companyInfo.map((info) => (
-                        <CompanyRow
-                            displayName={info.display_name}
-                            data={info.data}
-                        />
-                    ))}
-                </div>
-                <button>수정</button>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="go_content">
+        <ContentTop titleName={"회사 관리"} path={"/"} />
+      </div>
+      <div className="contents">
+        <div className="content_box">
+          {companyInfo.map((info, index) => (
+            <CompanyRow
+              key={index}
+              displayName={info.display_name}
+              data={info.data}
+              editable={info.editable}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="footer">
+        <button className="btn_major">저장</button>
+        <button className="btn_minor">취소</button>
+      </div>
+    </>
+  );
 };
 
 interface CompanyRowProps {
-    displayName: string;
-    data: string;
+  displayName: string;
+  data: string;
+  editable: boolean;
 }
 const CompanyRow = (props: CompanyRowProps) => {
-    return (
-        <div className="row">
-            <div className="title">{props.displayName}</div>
-            <span className="content">{props.data}</span>
-        </div>
-    );
+  const [value, setValue] = useState(props.data);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <div className="row">
+      <div className="title">{props.displayName}</div>
+      {props.editable ? (
+        <input className="input_content" value={value} onChange={onChange} />
+      ) : (
+        <span className="content">{props.data}</span>
+      )}
+    </div>
+  );
 };
 
 export default CompanyPage;
