@@ -10,30 +10,46 @@ import CompanyPage from "./pages/CompanyPage";
 import EmployeePage from "./pages/EmployeePage";
 
 const routes = [
-    {
-        path: "/",
-        element: <HomePage />,
-    },
-    {
-        path: "/login",
-        element: <LoginPage />,
-    },
-    {
-        path: "/notice",
-        element: <NoticePage />,
-    },
-    {
-        path: "/sale",
-        element: <SalePage />,
-    },
-    {
-        path: "/purchase",
-        element: <PurchasePage />,
-    },
-    {
-        path: "/freeboard",
-        element: <FreeBoardPage />,
-    },
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/notice",
+    element: <NoticePage />,
+  },
+  {
+    path: "/sale",
+    element: <SalePage />,
+  },
+  {
+    path: "/purchase",
+    element: <PurchasePage />,
+  },
+  {
+    path: "/company",
+    element: <CompanyPage />,
+  },
+  {
+    path: "/employee",
+    element: <EmployeePage />,
+  },
+  {
+    path: "/freeboard",
+    element: <FreeBoardPage />,
+  },
+  {
+    path: "/freeboard/editfreeboard",
+    element: <EditFreeBoardPage />,
+  },
+  {
+    path: "/detailfreeboardpage/:freeboardpageid",
+    element: <DetailFreeBoardPage />,
+  },
 ];
 
 export default routes;
