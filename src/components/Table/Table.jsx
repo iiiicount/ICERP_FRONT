@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import styles from "../../assets/scss/Grid.module.scss";
-import ModalTrigger from "../Modal/ModalTrigger";
+import React from "react";
+import styles from "../../assets/scss/Table.module.scss";
 
 const Table = ({
     columnName = {},
-    gridTestDataList = [],
+    tableDataList = [],
     useOption = "view",
+    onClick,
 }) => {
-    const keys = gridTestDataList.reduce(
+    const keys = tableDataList.reduce(
         (acc, item) => [
             ...acc,
             ...Object.keys(item).filter((key) => !acc.includes(key)),
@@ -17,7 +17,7 @@ const Table = ({
 
     return (
         <>
-            <div className={styles.grid}>
+            <div className={styles.table}>
                 <table className={styles.grid_main}>
                     <thead>
                         <tr>
@@ -29,11 +29,11 @@ const Table = ({
                         </tr>
                     </thead>
                     <tbody>
-                        {gridTestDataList.map((data) => (
+                        {tableDataList.map((data) => (
                             <tr
                                 className={styles.grid_tr_row}
                                 key={data.order}
-                                onClick={() => console.log("그리드 클릭")}
+                                onClick={(prev) => onClick(data)}
                             >
                                 {keys.map((key) => (
                                     <th key={key}>
@@ -50,7 +50,6 @@ const Table = ({
                         ))}
                     </tbody>
                 </table>
-                <ModalTrigger /> {/* 모달 테스트 */}
             </div>
         </>
     );
