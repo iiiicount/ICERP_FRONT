@@ -55,7 +55,7 @@ export const contentBoxListDatas = [
 export const companyInfoData = {
   business_number: "000-00-000000",
   company_name: "ICOUNT",
-  ceo_name: "김하연",
+  ceo_name: "하여니",
   business_type: "서비스",
   business_item: "소프트웨어개발공급",
   number: "02-1111-2222",

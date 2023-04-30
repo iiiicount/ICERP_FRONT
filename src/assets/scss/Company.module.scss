@@ -35,23 +35,3 @@ $main-color: #19ce60;
     border: 1px solid #dddddd;
   }
 }
-.row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 16px;
-  margin: 10px;
-  .title {
-    width: 150px;
-  }
-  .input_content {
-    width: 600px;
-    height: 20px;
-    font-size: 16px;
-    border: 1px solid #dddddd;
-    padding: 5px;
-  }
-  .content {
-    padding: 5px;
-  }
-}
