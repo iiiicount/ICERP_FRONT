@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { contentBoxListDatas } from "../assets/data/MockDatas";
 import styles from "../assets/scss/DetailFreeBoardPage.module.scss";
 import ContentTop from "../components/ContentTop";
-
+import Comment from "../components/Comment";
 interface contentBox {
   writer?: string;
   writerImg?: string;
@@ -33,8 +33,8 @@ const DetailFreeBoardPage = () => {
           <div>{Datas[0].contents}</div>
           <div>태그</div>
           <div>첨부파일</div>
-          <div></div>
         </div>
+        <Comment />
       </div>
     </div>
   );
