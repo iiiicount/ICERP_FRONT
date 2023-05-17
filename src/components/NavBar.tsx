@@ -6,6 +6,7 @@ import {
     AiOutlineComment,
     AiOutlineTag,
     AiOutlineDatabase,
+    AiOutlineRight,
 } from "react-icons/ai";
 import { MdOutlinePersonOutline, MdOutlinePointOfSale } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
@@ -16,46 +17,68 @@ const navList = [
         name: "home",
         kr_name: "홈",
         icon: <AiOutlineHome size={"25px"} />,
+        navType: "gnb", //Global Navigation Bar
     },
     {
         path: "/freeboard",
         name: "freeboard",
         kr_name: "자유게시판",
         icon: <AiOutlineComment size={"25px"} />,
+        navType: "gnb",
     },
     {
         path: "/contact",
         name: "contact",
         kr_name: "주소록",
         icon: <MdOutlinePersonOutline size={"25px"} />,
+        navType: "gnb",
     },
     {
         path: "/sale",
         name: "sale",
         kr_name: "판매",
         icon: <MdOutlinePointOfSale size={"25px"} />,
+        navType: "gnb",
     },
     {
         path: "/purchase",
         name: "purchase",
         kr_name: "구매",
         icon: <AiOutlineTag size={"25px"} />,
+        navType: "gnb",
     },
     {
         path: "/base",
-        name: "base",
+        name: "/base",
         kr_name: "기초등록",
         icon: <AiOutlineDatabase size={"25px"} />,
+        navType: "gnb",
+    },
+    {
+        path: "/base/product",
+        name: "base/product",
+        kr_name: "품목등록",
+        icon: <AiOutlineRight size={"18px"} />,
+        navType: "lnb", // Local Navigation Bar
     },
     {
         path: "/company",
         name: "company",
         kr_name: "회사관리",
         icon: <HiOutlineBuildingOffice2 size={"25px"} />,
+        navType: "gnb",
     },
 ];
 
 const NavBar = () => {
+    const navGnbStyle = {
+        fontSize: "20px",
+    };
+
+    const navLnbStyle = {
+        fontSize: "16px",
+    };
+
     return (
         <header className="nav_header">
             <span className="wrap_btn_list">
@@ -82,6 +105,11 @@ const NavBar = () => {
                                         <li
                                             className="simplebar-li-item"
                                             key={nav.name}
+                                            style={
+                                                nav.navType === "gnb"
+                                                    ? navGnbStyle
+                                                    : navLnbStyle
+                                            }
                                         >
                                             <NavLink to={nav.path}>
                                                 <span className="wrap_ic_gnb_adv">
