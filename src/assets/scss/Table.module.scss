@@ -1,0 +1,22 @@
+.grid_main {
+    width: 100%;
+    table-layout: auto;
+
+    th {
+        height: 25px;
+        padding: 3px;
+        line-height: 1.6;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    tbody tr:hover {
+        background: #f4f4f4;
+    }
+
+    .grid_th_input {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #eee;
+    }
+}
