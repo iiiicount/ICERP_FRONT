@@ -91,7 +91,6 @@ const Table = ({
                         ))}
                     </tbody>
                 </table>
-                <button onClick={handleSubmit}>임시저장</button>
             </div>
         </>
     );
