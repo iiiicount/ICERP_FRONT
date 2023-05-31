@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../assets/scss/NavBar.scss";
 import logo from "../assets/images/icount_logo.png";
@@ -18,6 +19,7 @@ const navList = [
         kr_name: "홈",
         icon: <AiOutlineHome size={"25px"} />,
         navType: "gnb", //Global Navigation Bar
+        submenu: [],
     },
     {
         path: "/freeboard",
@@ -25,6 +27,7 @@ const navList = [
         kr_name: "자유게시판",
         icon: <AiOutlineComment size={"25px"} />,
         navType: "gnb",
+        submenu: [],
     },
     {
         path: "/contact",
@@ -32,6 +35,7 @@ const navList = [
         kr_name: "주소록",
         icon: <MdOutlinePersonOutline size={"25px"} />,
         navType: "gnb",
+        submenu: [],
     },
     {
         path: "/sale",
@@ -39,6 +43,22 @@ const navList = [
         kr_name: "판매",
         icon: <MdOutlinePointOfSale size={"25px"} />,
         navType: "gnb",
+        submenu: [
+            {
+                path: "/sale/register",
+                name: "saleRegister",
+                kr_name: "판매등록",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+            {
+                path: "/sale/inquire",
+                name: "saleInquire",
+                kr_name: "판매조회",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+        ],
     },
     {
         path: "/purchase",
@@ -46,88 +66,109 @@ const navList = [
         kr_name: "구매",
         icon: <AiOutlineTag size={"25px"} />,
         navType: "gnb",
+        submenu: [],
     },
     {
         path: "/base",
-        name: "/base",
+        name: "base",
         kr_name: "기초등록",
         icon: <AiOutlineDatabase size={"25px"} />,
         navType: "gnb",
+
+        submenu: [
+            {
+                path: "/base/product",
+                name: "baseProduct",
+                kr_name: "품목등록",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+            {
+                path: "/base/custom",
+                name: "baseCustom",
+                kr_name: "고객등록",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+        ],
     },
-    {
-        path: "/base/product",
-        name: "base/product",
-        kr_name: "품목등록",
-        icon: <AiOutlineRight size={"18px"} />,
-        navType: "lnb", // Local Navigation Bar
-    },
+
     {
         path: "/company",
         name: "company",
         kr_name: "회사관리",
         icon: <HiOutlineBuildingOffice2 size={"25px"} />,
         navType: "gnb",
+        submenu: [],
     },
 ];
 
-const NavBar = () => {
-    const navGnbStyle = {
-        fontSize: "20px",
-    };
+const AccordionMenuISubtem = ({ subMenuItems, isOpen }: any) => {
+    return (
+        <ul className={isOpen ? "show-menu" : "hide-menu"}>
+            {subMenuItems.map((subItem: any) => {
+                return (
+                    <li key={subItem.name}>
+                        <NavLink to={subItem.path}>{subItem.kr_name}</NavLink>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};
 
-    const navLnbStyle = {
-        fontSize: "16px",
+const AccordionMenuItem = ({ navItem }: any) => {
+    const [isOpen, setMenu] = useState(false); // 메뉴의 초기값을 false로 설정
+
+    const toggleMenu = () => {
+        setMenu((isOpen) => !isOpen); // on,off 개념 boolean
     };
 
     return (
-        <header className="nav_header">
-            <span className="wrap_btn_list">
-                <div className="btn_list">
-                    <span className="wrap_ic_gnb_adv">
-                        <span className="ic_gnb_adv menu"></span>
-                    </span>
+        <li
+            className="sub-menu"
+            key={navItem.name}
+            onClick={() => toggleMenu()}
+        >
+            <NavLink to={navItem.path}>
+                <div className="menu-icon-group">
+                    <i className="menu-icon">{navItem.icon}</i>
+                    <span className="">{navItem.kr_name}</span>
                 </div>
-            </span>
+                <i className="pull-right">
+                    <AiOutlineRight></AiOutlineRight>
+                </i>
+            </NavLink>
+            <AccordionMenuISubtem
+                subMenuItems={navItem.submenu}
+                isOpen={isOpen}
+            />
+        </li>
+    );
+};
 
+const NavBar = () => {
+    return (
+        <aside className="sidebar">
             <h1 className="nav_logo" id="advanced_logo">
                 <Link to="/">
                     <img className="logo" src={logo} />
                 </Link>
             </h1>
 
-            <nav id="menu-container">
-                <ul>
-                    <div className="simplebar-wrapper">
-                        <div className="simplebar-content-wrapper">
-                            <div className="simplebar-content">
-                                {navList.map((nav) => {
-                                    return (
-                                        <li
-                                            className="simplebar-li-item"
-                                            key={nav.name}
-                                            style={
-                                                nav.navType === "gnb"
-                                                    ? navGnbStyle
-                                                    : navLnbStyle
-                                            }
-                                        >
-                                            <NavLink to={nav.path}>
-                                                <span className="wrap_ic_gnb_adv">
-                                                    {nav.icon}
-                                                </span>
-                                                <span className="menu menu-name">
-                                                    {nav.kr_name}
-                                                </span>
-                                            </NavLink>
-                                        </li>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
+            <div id="leftside-navigation" className="nano">
+                <ul className="nano-content">
+                    {navList.map((navItem) => {
+                        return (
+                            <AccordionMenuItem
+                                navItem={navItem}
+                                //key={navItem.name}
+                            />
+                        );
+                    })}
                 </ul>
-            </nav>
-        </header>
+            </div>
+        </aside>
     );
 };
 

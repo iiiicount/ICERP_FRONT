@@ -108,17 +108,3 @@ export const employeeInfoData = [
     },
 ];
 
-export const basicProductInfoData = {
-    // 필수값
-    code: "T_00123", // 상품코드
-    name: "테스트상품00123", // 상품명
-
-    // optional
-    status: "N", // 상태 => 기본값 Y
-    taxation: "N", // 과세유형 => 기본값 Y
-    standard: "30cm", // 표준규격
-    unit: "20EA", // 단위
-    purchase_price: 100, // 구매가
-    sell_price: 500, // 판매가
-    memo: "테스트용 상품이라서 사용중아닌걸로 등록했어요~", // 메모
-};
