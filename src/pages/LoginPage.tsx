@@ -1,6 +1,7 @@
 import styles from "../assets/scss/Login.module.scss";
 import logo from "../assets/images/icount_logo_color.png";
 import { useState } from "react";
+import axios from "axios";
 
 const LoginPage = () => {
   const [comcode, setComcode] = useState("");
@@ -19,23 +20,23 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const onClickLoginButton = async () => {
-    const loginData = new FormData();
-    loginData.append("com_code", comcode);
-    loginData.append("username", username);
-    loginData.append("password", password);
-
-    fetch("http://43.201.180.168:8080/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "Access-Control-Allow-Origin": "",
-      },
-      body: loginData,
+  const onClickLoginButton = async (e: React.MouseEvent<HTMLDivElement>) => {
+    const formData = new FormData();
+    formData.append("com_code", comcode);
+    formData.append("username", username);
+    formData.append("password", password);
+    axios({
+      method: "post",
+      url: "/login",
+      data: formData,
     })
-      .then((res) => res.json())
       .then((result) => {
-        console.log("결과: ", result);
+        console.log("요청성공");
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("요청실패");
+        console.log(error);
       });
   };
 
