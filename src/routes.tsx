@@ -32,11 +32,11 @@ const routes = [
         element: <PurchasePage />,
     },
     {
-        path: "/company",
+        path: "/company/info",
         element: <CompanyPage />,
     },
     {
-        path: "/employee",
+        path: "/company/employee",
         element: <EmployeePage />,
     },
     {

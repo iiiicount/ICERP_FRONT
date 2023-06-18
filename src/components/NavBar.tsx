@@ -94,12 +94,27 @@ const navList = [
     },
 
     {
-        path: "/company",
+        path: "/company/info",
         name: "company",
         kr_name: "회사관리",
         icon: <HiOutlineBuildingOffice2 size={"25px"} />,
         navType: "gnb",
-        submenu: [],
+        submenu: [
+            {
+                path: "/company/info",
+                name: "companyInfo",
+                kr_name: "회사정보",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+            {
+                path: "/company/employee",
+                name: "employee",
+                kr_name: "사원관리",
+                icon: <AiOutlineRight size={"18px"} />,
+                navType: "lnb", // Local Navigation Bar
+            },
+        ],
     },
 ];
 
@@ -125,11 +140,7 @@ const AccordionMenuItem = ({ navItem }: any) => {
     };
 
     return (
-        <li
-            className="sub-menu"
-            key={navItem.name}
-            onClick={() => toggleMenu()}
-        >
+        <li className="sub-menu" key={navItem.name} onClick={() => toggleMenu()}>
             <NavLink to={navItem.path}>
                 <div className="menu-icon-group">
                     <i className="menu-icon">{navItem.icon}</i>
@@ -139,10 +150,7 @@ const AccordionMenuItem = ({ navItem }: any) => {
                     <AiOutlineRight></AiOutlineRight>
                 </i>
             </NavLink>
-            <AccordionMenuISubtem
-                subMenuItems={navItem.submenu}
-                isOpen={isOpen}
-            />
+            <AccordionMenuISubtem subMenuItems={navItem.submenu} isOpen={isOpen} />
         </li>
     );
 };
