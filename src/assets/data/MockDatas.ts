@@ -67,7 +67,8 @@ export const companyInfoData = {
 
 export const employeeInfoData = [
     {
-        employeeNumber: "2023-001",
+        id: "1",
+        number: "2023-001",
         name: "홍길동",
         department: "프론트엔드",
         rank: "선임",
@@ -77,7 +78,8 @@ export const employeeInfoData = [
         email: "1@icounterp.co.kr",
     },
     {
-        employeeNumber: "2023-002",
+        id: "2",
+        number: "2023-002",
         name: "장발장",
         department: "백엔드",
         rank: "선임",
@@ -87,7 +89,8 @@ export const employeeInfoData = [
         email: "2@icounterp.co.kr",
     },
     {
-        employeeNumber: "2023-003",
+        id: "3",
+        number: "2023-003",
         name: "짱구",
         department: "UI/UX",
         rank: "선임",
@@ -97,7 +100,8 @@ export const employeeInfoData = [
         email: "3@icounterp.co.kr",
     },
     {
-        employeeNumber: "2023-004",
+        id: "4",
+        number: "2023-004",
         name: "스즈메",
         department: "기획",
         rank: "선임",
@@ -107,4 +111,3 @@ export const employeeInfoData = [
         email: "4@icounterp.co.kr",
     },
 ];
-

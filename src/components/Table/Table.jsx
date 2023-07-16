@@ -16,9 +16,7 @@ const Table = ({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const checkedData = tableDataList.filter(
-            (_, index) => isChecked[index]
-        );
+        const checkedData = tableDataList.filter((_, index) => isChecked[index]);
         console.log(checkedData);
     };
 
@@ -26,14 +24,11 @@ const Table = ({
      * 테이블 상단 컬럼 만들기
      */
     const keys = tableDataList.reduce(
-        (acc, item) => [
-            ...acc,
-            ...Object.keys(item).filter((key) => !acc.includes(key)),
-        ],
+        (acc, item) => [...acc, ...Object.keys(item).filter((key) => !acc.includes(key))],
         []
     );
 
-    const someChecked = tableDataList.some(({ checked }) => checked); //한개라도 체크되어있는 경우
+    const allChecked = tableDataList.every(({ checked }) => checked);
 
     return (
         <>
@@ -47,7 +42,7 @@ const Table = ({
                                     <input
                                         type="checkbox"
                                         name="checkAll"
-                                        checked={someChecked}
+                                        checked={allChecked}
                                         onChange={onChange}
                                     />
                                 </th>
@@ -74,16 +69,11 @@ const Table = ({
                                     </th>
                                 )}
                                 {keys.map((key) => (
-                                    <th
-                                        key={key}
-                                        onClick={(prev) => onClick(data)}
-                                    >
+                                    <th key={key} onClick={(prev) => onClick(data)}>
                                         {useOption === "view" ? (
                                             <span>{data[key]}</span>
                                         ) : (
-                                            <input
-                                                className={styles.grid_th_input}
-                                            ></input>
+                                            <input className={styles.grid_th_input}></input>
                                         )}
                                     </th>
                                 ))}
