@@ -1,77 +1,74 @@
 import { employeeInfoData } from "../assets/data/MockDatas";
 import ContentTop from "../components/ContentTop";
 import styles from "../assets/scss/Employee.module.scss";
+import EditModal from "../components/Modal/EditModal";
+import Pagenation from "../components/Pagenation/Pagenation";
+import Table from "../components/Table/Table";
+import Footer from "../components/Footer";
+import { useState } from "react";
 
-const EmployeePage = () => {
-  const tableHeader = [
-    { label: "사원번호", value: "employeeNumber" },
-    { label: "이름", value: "name" },
-    { label: "부서", value: "department" },
-    { label: "직위/직급", value: "rank" },
-    { label: "권한", value: "authority" },
-    { label: "내선번호", value: "extensionNumber" },
-    { label: "핸드폰번호", value: "phoneNumber" },
-    { label: "이메일", value: "email" },
-  ];
-
-  return (
-    <>
-      <div className="go_content">
-        <ContentTop titleName={"사원 관리"} path={"/employee"} />
-        <div className={styles.contents}>
-          <div className={styles.toolbar}>
-            <div></div>
-            <div>
-              <button className="btn_minor">선택삭제</button>
-              <button className="btn_major">사원등록</button>
-            </div>
-          </div>
-          <Table headers={tableHeader} items={employeeInfoData} selectable={true}></Table>
-        </div>
-      </div>
-    </>
-  );
+const columnName = {
+    number: "사원번호",
+    name: "이름",
+    department: "부서",
+    rank: "직위/직급",
+    authority: "권한",
+    extensionNumber: "내선번호",
+    phoneNumber: "핸드폰번호",
+    email: "이메일",
 };
 
-export interface ITableProps {
-  headers: { label: string; value: string }[];
-  items: any[];
-  selectable: boolean;
-}
+const EmployeePage = () => {
+    const [popUp, setPopUp] = useState<typeof columnName | null>(null);
+    const [currentPage, setCurrentPage] = useState(1); //현재 페이지
+    const [numberOfPosts, setNumberOfPosts] = useState(10); //게시글 개수
+    const [numberOfPages, setNumberOfPages] = useState(10); //페이지 개수
 
-const Table = (props: ITableProps) => {
-  const headerKey = props.headers.map((header) => header.value);
+    const onClickPageButton = (page: number) => {
+        console.log("페이지네이션 클릭", page);
+        setCurrentPage(page);
+    };
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          {props.selectable && (
-            <th>
-              <input type="checkbox" />
-            </th>
-          )}
-          {props.headers.map((header) => (
-            <th key={header.label}>{header.label}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {props.items.map((item, index) => (
-          <tr key={index}>
-            {props.selectable && (
-              <td>
-                <input type="checkbox" />
-              </td>
-            )}
-            {headerKey.map((key) => (
-              <td key={key + index}>{item[key]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+    const [data, setData] = useState(employeeInfoData.map((item) => ({ ...item, checked: false })));
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = e.target;
+        if (name !== "checkAll") {
+            return setData((prev) =>
+                prev.map((item) => (item.id === name ? { ...item, checked } : item))
+            );
+        }
+        setData((prev) => prev.map((item) => ({ ...item, checked })));
+    };
+
+    return (
+        <div className="go_content">
+            <ContentTop titleName={"사원 관리"} path={"/employee"} />
+            <div className="content_page">
+                <Table
+                    columnName={columnName}
+                    tableDataList={data}
+                    onClick={setPopUp}
+                    onChange={handleChange}
+                    usingCheck={true}
+                />
+                {popUp !== null && (
+                    <EditModal
+                        title={"정보 수정"}
+                        columnName={columnName}
+                        item={popUp}
+                        onClose={() => setPopUp(null)}
+                    />
+                )}
+            </div>
+            <Footer data={data}></Footer>
+            <Pagenation
+                currentPage={currentPage}
+                numberOfPages={numberOfPages}
+                onClick={onClickPageButton}
+            />
+        </div>
+    );
 };
 
 export default EmployeePage;
