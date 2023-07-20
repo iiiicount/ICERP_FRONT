@@ -1,22 +1,29 @@
-import { useParams } from "react-router-dom";
-import { contentBoxListDatas } from "../assets/data/MockDatas";
+import { useEffect, useState } from "react";
+import { HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 import styles from "../assets/scss/DetailFreeBoardPage.module.scss";
+import { BasicButton } from "../components";
 import ContentTop from "../components/ContentTop";
+import { IcontentBoxList } from "./FreeBoardPage";
 
-interface contentBox {
-  writer?: string;
-  writerImg?: string;
-  title?: string;
-  contents?: string;
-  createdDate?: string;
-  commentCnt?: number;
+interface IDetailFreeBoardPageProps {
+  id?: string;
 }
 
-const DetailFreeBoardPage = () => {
-  let { freeboardpageid } = useParams();
-  let Datas: contentBox[] = contentBoxListDatas.filter((content) => {
-    return content.id == freeboardpageid;
+const DetailFreeBoardPage = (props: IDetailFreeBoardPageProps) => {
+  const [boardInfo, setBoardInfo] = useState<IcontentBoxList>({
+    id: "",
+    is_notice: false,
+    writer: "",
+    title: "",
+    content: "",
+    commentCnt: 1,
   });
+  useEffect(() => {
+    fetch(`/board/${props.id}`)
+      .then((res) => res.json())
+      .then((data) => setBoardInfo(data));
+  }, [props.id]);
+
   return (
     <div className="go_content">
       <ContentTop
@@ -25,15 +32,18 @@ const DetailFreeBoardPage = () => {
       />
       <div className={styles.freeboardpage_container}>
         <div className={styles.contents_container}>
-          <div>{Datas[0].title}</div>
+          <div>{boardInfo.title}</div>
           <div>
-            {Datas[0].createdDate}&nbsp;
-            {Datas[0].writerImg}&nbsp;{Datas[0].writer}
+            2023.06.20&nbsp;
+            <HiOutlineChatBubbleOvalLeftEllipsis />
+            &nbsp;{boardInfo.writer}
           </div>
-          <div>{Datas[0].contents}</div>
+          <div>{boardInfo.content}</div>
           <div>태그</div>
           <div>첨부파일</div>
           <div></div>
+          <BasicButton text="글수정" path="/freeboard/editfreeboard" />
+          <BasicButton text="글삭제" path="/freeboard" />
         </div>
       </div>
     </div>

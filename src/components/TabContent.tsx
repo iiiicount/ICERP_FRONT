@@ -14,7 +14,7 @@ const TabContent = ({ category }: any) => {
           return (
             <li
               id={`tab_${idx}`}
-              className={taps == idx ? "border_bottom" : ""}
+              className={taps === idx ? "border_bottom" : ""}
               key={idx}
               onClick={() => tapClick(idx)}
             >
